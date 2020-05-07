@@ -21,6 +21,9 @@ namespace Capstone.Data
         public DbSet<CharacterEncounter> CharacterEncounter { get; set; }
         public DbSet<MonsterEncounter> MonsterEncounter { get; set; }
 
+
+
+
     }
 
 }

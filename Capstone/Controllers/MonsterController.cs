@@ -16,79 +16,70 @@ using System.IO;
 namespace Capstone.controllers
 {
     [Authorize]
-    public class CharacterController : Controller
+    public class MonsterController : Controller
     {
         private readonly ApplicationDbContext _context;
         private readonly UserManager<ApplicationUser> _usermanager;
 
-        public CharacterController(ApplicationDbContext context, UserManager<ApplicationUser> usermanager)
+        public MonsterController(ApplicationDbContext context, UserManager<ApplicationUser> usermanager)
         {
             _context = context;
             _usermanager = usermanager;
         }
 
-        // get: characters
+        // get: monsters
         public async Task<ActionResult> Index()
         {
             var user = await getcurrentuserasync();
-            var characters = await _context.Character
-                .Where(ch => ch.ApplicationUserId == user.Id)
+            var monsters = await _context.Monster
+                .Where(mo => mo.ApplicationUserId == user.Id)
                 .ToListAsync();
-            return View(characters);
+            return View(monsters);
         }
 
-        // get: character/details/5
+        // get: monster/details/5
         public ActionResult Details(int id)
         {
             return View();
         }
 
-        // get: Character/create
+        // get: monster/create
         public ActionResult Create()
         {
             return View();
         }
 
-        // post: character/create
+        // post: monster/create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create(Character character)
+        public async Task<ActionResult> Create(Monster monster)
         {
             try
             {
                 var user = await getcurrentuserasync();
 
-                var characterinstance = new Character
+                var monsterinstance = new Monster
                 {
-                    CharacterName = character.CharacterName,
-                    PlayerName = character.PlayerName,
-                    Class = character.Class,
-                    Race = character.Race,
-                    Level = character.Level,
-                    Experience = character.Experience,
-                    MaxHp = character.MaxHp,
-                    CurrentHp = character.CurrentHp,
-                    HitDice = character.HitDice,
-                    ArmorClass = character.ArmorClass,
-                    Strength = character.Strength,
-                    Dexterity = character.Dexterity,
-                    Constitution = character.Constitution,
-                    Intelligence = character.Intelligence,
-                    Wisdom = character.Wisdom,
-                    Charisma = character.Charisma,
-                    ProficiencyBounus = character.ProficiencyBounus,
-                    Spells = character.Spells,
-                    Inventory = character.Inventory,
-                    Proficiencies = character.Proficiencies,
-                    Speed = character.Speed,
-                    SavingThrows = character.SavingThrows,
-                    Skills = character.Skills
+                    Name = monster.Name,
+                    HitPoints = monster.HitPoints,
+                    ArmorClass = monster.ArmorClass,
+                    SpeedWalk = monster.SpeedWalk,
+                    SpeedFly = monster.SpeedFly,
+                    SpeedSwim = monster.SpeedSwim,
+                    Strength = monster.Strength,
+                    Dexterity = monster.Dexterity,
+                    Constitution = monster.Constitution,
+                    Intelligence = monster.Intelligence,
+                    Wisdom = monster.Wisdom,
+                    Charisma = monster.Charisma,
+                    SavingThrows = monster.SavingThrows,
+                    ChallengeRating = monster.ChallengeRating
                 };
 
-                characterinstance.ApplicationUserId = user.Id;
+                monsterinstance.ApplicationUserId = user.Id;
 
 
-                _context.Character.Add(characterinstance);
+                _context.Monster.Add(monsterinstance);
                 await _context.SaveChangesAsync();
 
                 return RedirectToAction(nameof(Index));
@@ -99,13 +90,13 @@ namespace Capstone.controllers
             }
         }
 
-        // get: character/edit/5
+        // get: monster/edit/5
         public ActionResult Edit(int id)
         {
             return View();
         }
 
-        // post: character/edit/5
+        // post: monster/edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit(int id, IFormCollection collection)
@@ -122,30 +113,30 @@ namespace Capstone.controllers
             }
         }
 
-        // get: character/delete/5
+        // get: monster/delete/5
         public async Task<ActionResult> Delete(int id)
         {
-            var character = await _context.Character.FirstOrDefaultAsync(ch => ch.Id == id);
+            var monster = await _context.Monster.FirstOrDefaultAsync(mo => mo.Id == id);
 
             var loggedinuser = await getcurrentuserasync();
 
-            if (character.ApplicationUserId != loggedinuser.Id)
+            if (monster.ApplicationUserId != loggedinuser.Id)
             {
                 return NotFound();
             }
 
-            return View(character);
+            return View(monster);
         }
 
-        // post: character/delete/5
+        // post: monster/delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Delete(int id, Character character)
+        public async Task<ActionResult> Delete(int id, Monster monster)
         {
             try
             {
 
-                _context.Character.Remove(character);
+                _context.Monster.Remove(monster);
                 await _context.SaveChangesAsync();
 
                 return RedirectToAction(nameof(Index));
