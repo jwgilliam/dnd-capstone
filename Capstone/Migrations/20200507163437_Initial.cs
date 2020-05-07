@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Capstone.Migrations
 {
-    public partial class initial : Migration
+    public partial class Initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -168,7 +168,7 @@ namespace Capstone.Migrations
                     Experience = table.Column<double>(nullable: false),
                     MaxHp = table.Column<int>(nullable: false),
                     CurrentHp = table.Column<int>(nullable: false),
-                    HitDice = table.Column<int>(nullable: false),
+                    HitDice = table.Column<string>(nullable: true),
                     ArmorClass = table.Column<int>(nullable: false),
                     Strength = table.Column<int>(nullable: false),
                     Dexterity = table.Column<int>(nullable: false),
@@ -223,6 +223,7 @@ namespace Capstone.Migrations
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     ApplicationUserId = table.Column<string>(nullable: true),
+                    Name = table.Column<string>(nullable: true),
                     HitPoints = table.Column<int>(nullable: false),
                     ArmorClass = table.Column<int>(nullable: false),
                     SpeedWalk = table.Column<int>(nullable: false),
@@ -235,7 +236,7 @@ namespace Capstone.Migrations
                     Wisdom = table.Column<int>(nullable: false),
                     Charisma = table.Column<int>(nullable: false),
                     SavingThrows = table.Column<string>(nullable: true),
-                    ChallengeRating = table.Column<int>(nullable: false)
+                    ChallengeRating = table.Column<double>(nullable: false)
                 },
                 constraints: table =>
                 {
