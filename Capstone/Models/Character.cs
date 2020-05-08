@@ -18,7 +18,7 @@ namespace Capstone.Models
         public double Experience { get; set; }
         public int MaxHp { get; set; }
         public int CurrentHp { get; set; }
-        public int HitDice { get; set; }
+        public string HitDice { get; set; }
         public int ArmorClass { get; set; }
         public int Strength { get; set; }
         public int Dexterity { get; set; }

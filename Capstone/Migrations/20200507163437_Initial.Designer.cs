@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Capstone.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20200505183349_initial")]
-    partial class initial
+    [Migration("20200507163437_Initial")]
+    partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -55,8 +55,8 @@ namespace Capstone.Migrations
                     b.Property<double>("Experience")
                         .HasColumnType("float");
 
-                    b.Property<int>("HitDice")
-                        .HasColumnType("int");
+                    b.Property<string>("HitDice")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("Intelligence")
                         .HasColumnType("int");
@@ -165,8 +165,8 @@ namespace Capstone.Migrations
                     b.Property<int>("ArmorClass")
                         .HasColumnType("int");
 
-                    b.Property<int>("ChallengeRating")
-                        .HasColumnType("int");
+                    b.Property<double>("ChallengeRating")
+                        .HasColumnType("float");
 
                     b.Property<int>("Charisma")
                         .HasColumnType("int");
@@ -182,6 +182,9 @@ namespace Capstone.Migrations
 
                     b.Property<int>("Intelligence")
                         .HasColumnType("int");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("SavingThrows")
                         .HasColumnType("nvarchar(max)");
