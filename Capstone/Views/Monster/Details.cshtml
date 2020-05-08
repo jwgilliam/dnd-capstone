@@ -1,0 +1,102 @@
+﻿@model Capstone.Models.Monster
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>Monster</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+        <dt class = "col-sm-2">
+            HP
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.HitPoints)
+        </dd>
+        <dt class = "col-sm-2">
+           AC
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.ArmorClass)
+        </dd>
+        <dt class = "col-sm-2">
+           Walk Speed
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.SpeedWalk)
+        </dd>
+        <dt class = "col-sm-2">
+            Swim Speed
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.SpeedSwim)
+        </dd>
+        <dt class = "col-sm-2">
+            Fly Speed
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.SpeedFly)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Strength)
+        </dt>
+        <dd class = "col-sm-10">
+           STR
+        </dd>
+        <dt class = "col-sm-2">
+            DEX
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Dexterity)
+        </dd>
+        <dt class = "col-sm-2">
+           CON
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Constitution)
+        </dd>
+        <dt class = "col-sm-2">
+            INT
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Intelligence)
+        </dd>
+        <dt class = "col-sm-2">
+            WIS
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Wisdom)
+        </dd>
+        <dt class = "col-sm-2">
+            CHA
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Charisma)
+        </dd>
+        <dt class = "col-sm-2">
+            Saving Throws
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.SavingThrows)
+        </dd>
+        <dt class = "col-sm-2">
+           CR
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.ChallengeRating)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

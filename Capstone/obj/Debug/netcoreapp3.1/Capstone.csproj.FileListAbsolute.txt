@@ -431,3 +431,9 @@ C:\Users\ggsmo\workspace\csharp\Capstone\Capstone\obj\Debug\netcoreapp3.1\Razor\
 C:\Users\ggsmo\workspace\csharp\Capstone\Capstone\obj\Debug\netcoreapp3.1\Razor\Views\Character\Index.cshtml.g.cs
 C:\Users\ggsmo\workspace\csharp\Capstone\Capstone\obj\Debug\netcoreapp3.1\Razor\Views\Monster\Create.cshtml.g.cs
 C:\Users\ggsmo\workspace\csharp\Capstone\Capstone\obj\Debug\netcoreapp3.1\Razor\Views\Monster\Index.cshtml.g.cs
+C:\Users\ggsmo\workspace\csharp\Capstone\Capstone\obj\Debug\netcoreapp3.1\Razor\Views\Character\Delete.cshtml.g.cs
+C:\Users\ggsmo\workspace\csharp\Capstone\Capstone\obj\Debug\netcoreapp3.1\Razor\Views\Character\Details.cshtml.g.cs
+C:\Users\ggsmo\workspace\csharp\Capstone\Capstone\obj\Debug\netcoreapp3.1\Razor\Views\Character\Edit.cshtml.g.cs
+C:\Users\ggsmo\workspace\csharp\Capstone\Capstone\obj\Debug\netcoreapp3.1\Razor\Views\Monster\Delete.cshtml.g.cs
+C:\Users\ggsmo\workspace\csharp\Capstone\Capstone\obj\Debug\netcoreapp3.1\Razor\Views\Monster\Details.cshtml.g.cs
+C:\Users\ggsmo\workspace\csharp\Capstone\Capstone\obj\Debug\netcoreapp3.1\Razor\Views\Monster\Edit.cshtml.g.cs
