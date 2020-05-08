@@ -1,0 +1,105 @@
+﻿@model Capstone.Models.Monster
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h1>Delete</h1>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Monster</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+        <dt class = "col-sm-2">
+           HP
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.HitPoints)
+        </dd>
+        <dt class = "col-sm-2">
+            AC
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.ArmorClass)
+        </dd>
+        <dt class = "col-sm-2">
+            Walk Speed
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.SpeedWalk)
+        </dd>
+        <dt class = "col-sm-2">
+            Swim Speed
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.SpeedSwim)
+        </dd>
+        <dt class = "col-sm-2">
+            Fly Sped
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.SpeedFly)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Strength)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Strength)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Dexterity)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Dexterity)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Constitution)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Constitution)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Intelligence)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Intelligence)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Wisdom)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Wisdom)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Charisma)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Charisma)
+        </dd>
+        <dt class = "col-sm-2">
+           Saving Throws
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.SavingThrows)
+        </dd>
+        <dt class = "col-sm-2">
+           Challenge Rating
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.ChallengeRating)
+        </dd>
+    </dl>
+    
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="Id" />
+        <input type="submit" value="Delete" class="btn btn-danger" /> |
+        <a asp-action="Index">Back to List</a>
+    </form>
+</div>

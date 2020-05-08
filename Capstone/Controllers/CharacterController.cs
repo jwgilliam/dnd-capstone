@@ -38,9 +38,11 @@ namespace Capstone.controllers
         }
 
         // get: character/details/5
-        public ActionResult Details(int id)
+        public async Task<ActionResult> Details(int id)
         {
-            return View();
+            var character = await _context.Character
+                .FirstOrDefaultAsync(c => c.Id == id);
+            return View(character);
         }
 
         // get: Character/create
@@ -100,26 +102,32 @@ namespace Capstone.controllers
         }
 
         // get: character/edit/5
-        public ActionResult Edit(int id)
+        public async Task<IActionResult> Edit(int id)
         {
-            return View();
+            var character = await _context.Character.FindAsync(id);
+            return View(character);
         }
 
         // post: character/edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public async Task<IActionResult> Edit(int id, Character character)
         {
+            
             try
             {
-                // todo: add update logic here
+                var user = await getcurrentuserasync();
+                _context.Update(character);
+                character.ApplicationUserId = user.Id;
+                await _context.SaveChangesAsync();
 
-                return RedirectToAction(nameof(Index));
+               
             }
-            catch
+            catch(DbUpdateConcurrencyException)
             {
-                return View();
+               
             }
+            return RedirectToAction("Index", "Character");
         }
 
         // get: character/delete/5
