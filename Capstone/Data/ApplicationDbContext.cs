@@ -5,6 +5,7 @@ using Capstone.Models;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
+
 namespace Capstone.Data
 {
     public class ApplicationDbContext : IdentityDbContext
@@ -20,6 +21,7 @@ namespace Capstone.Data
         public DbSet<Encounter> Encounter { get; set; }
         public DbSet<CharacterEncounter> CharacterEncounter { get; set; }
         public DbSet<MonsterEncounter> MonsterEncounter { get; set; }
+        
 
 
 
