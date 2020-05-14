@@ -9,8 +9,7 @@ namespace Capstone.Models
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public int CharacterId { get; set; }
-        public int MonsterId { get; set; }
+        
         public string ApplicationUserId { get; set; }
         public ApplicationUser ApplicationUser { get; set; }
         public string Description { get; set; }

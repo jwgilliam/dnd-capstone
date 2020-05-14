@@ -12,9 +12,13 @@ namespace Capstone.Models.ViewModels
         public int Id { get; set; }
         public Character Character { get; set; }
         public Encounter Encounter { get; set; }
+        public CharacterEncounter CharacterEncounter { get; set; }
+        public List<CharacterEncounter> CharacterEncounters { get; set; }
         public List<Character> Characters { get; set; }
         public Monster Monster { get; set; }
         public List<Monster> Monsters { get; set; }
+        public MonsterEncounter MonsterEncounter { get; set; }
+        public List<MonsterEncounter> MonsterEncounters { get; set; }
         public ApplicationUser ApplicationUser {get; set;}
         public List<int> MonsterIds { get; set; }
         public int MonsterId { get; set; }

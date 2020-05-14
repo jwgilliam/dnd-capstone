@@ -46,9 +46,17 @@ namespace Capstone.Controllers
         // GET: Encounter/Details/5
         public async Task<ActionResult> Details(int id)
         {
-            
+            var encounter = await _context.Encounter
+                .Include(ce => ce.CharacterEncounters)
+                .ThenInclude(c => c.Character)
                 
-            return View();
+                .Include(me => me.MonsterEncounters)
+                .ThenInclude(m => m.Monster)
+                
+                .FirstOrDefaultAsync(en => en.Id == id);
+            return View(encounter);
+
+            
         }
 
         // GET: Encounter/Create
@@ -56,6 +64,7 @@ namespace Capstone.Controllers
         {
             var viewModel = new EncounterViewModel();
             var characterOptions = await _context.Character.Select(ch => new SelectListItem()
+         
             {
                 Text = ch.CharacterName,
                 Value = ch.Id.ToString()
@@ -79,17 +88,45 @@ namespace Capstone.Controllers
             try
             {
                 var user = await getcurrentuserasync();
-                var encounter = new Encounter
+                var encounterinstance = new Encounter
+                
 
                 {
                     Name = encounterView.Encounter.Name,
                     Description = encounterView.Encounter.Description,
                     Location = encounterView.Encounter.Location,
-                    MonsterId = encounterView.MonsterId,
-                    CharacterId = encounterView.CharacterId
+                    CharacterEncounters = new List<CharacterEncounter>(),
+                    MonsterEncounters = new List<MonsterEncounter>(),
+                    ApplicationUserId = user.Id
 
-                };
-                _context.Add(encounter);
+
+
+            };
+
+                _context.Add(encounterinstance);
+                await _context.SaveChangesAsync();
+              
+                foreach (var characterId in encounterView.CharacterIds)
+                {
+                    var createdCharacterEncounter = new CharacterEncounter
+                    {
+                        CharacterId = characterId,
+                        EncounterId = encounterinstance.Id
+                    };
+                    _context.Add(createdCharacterEncounter);
+                }
+
+                foreach (var monsterId in encounterView.MonsterIds)
+                {
+                    var createdMonsterEncounter = new MonsterEncounter
+                    {
+                        MonsterId = monsterId,
+                        EncounterId = encounterinstance.Id
+                    };
+                    _context.Add(createdMonsterEncounter);
+                }
+                
+
                 await _context.SaveChangesAsync();
 
                 return RedirectToAction(nameof(Index));
@@ -101,42 +138,59 @@ namespace Capstone.Controllers
         }
 
         // GET: Encounter/Edit/5
-        public ActionResult Edit(int id)
+        public async Task<ActionResult> Edit(int id)
         {
-            return View();
+            var encounter = await _context.Encounter.FindAsync(id);
+            return View(encounter);
         }
 
         // POST: Encounter/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public async Task<ActionResult> Edit(int id, Encounter encounter)
         {
             try
             {
-                // TODO: Add update logic here
+                var user = await getcurrentuserasync();
+                _context.Update(encounter);
+                encounter.ApplicationUserId = user.Id;
+                await _context.SaveChangesAsync();
 
-                return RedirectToAction(nameof(Index));
+
             }
-            catch
+            catch (DbUpdateConcurrencyException)
             {
-                return View();
+
             }
+            return RedirectToAction("Index", "Encounter");
         }
+    
 
         // GET: Encounter/Delete/5
-        public ActionResult Delete(int id)
+        public async Task<ActionResult> Delete(int id)
         {
-            return View();
+            var encounter = await _context.Encounter.FirstOrDefaultAsync(en => en.Id == id);
+
+            var loggedinuser = await getcurrentuserasync();
+
+            if (encounter.ApplicationUserId != loggedinuser.Id)
+            {
+                return NotFound();
+            }
+
+            return View(encounter);
         }
 
         // POST: Encounter/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
+        public async Task<ActionResult> Delete(int id, Encounter encounter)
         {
             try
             {
-                // TODO: Add delete logic here
+
+                _context.Encounter.Remove(encounter);
+                await _context.SaveChangesAsync();
 
                 return RedirectToAction(nameof(Index));
             }
