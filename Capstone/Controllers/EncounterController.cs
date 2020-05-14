@@ -47,6 +47,12 @@ namespace Capstone.Controllers
         public async Task<ActionResult> Details(int id)
         {
             var encounter = await _context.Encounter
+                .Include(ce => ce.CharacterEncounters)
+                .ThenInclude(c => c.Character)
+                
+                .Include(me => me.MonsterEncounters)
+                .ThenInclude(m => m.Monster)
+                
                 .FirstOrDefaultAsync(en => en.Id == id);
             return View(encounter);
 
@@ -161,19 +167,30 @@ namespace Capstone.Controllers
     
 
         // GET: Encounter/Delete/5
-        public ActionResult Delete(int id)
+        public async Task<ActionResult> Delete(int id)
         {
-            return View();
+            var encounter = await _context.Encounter.FirstOrDefaultAsync(en => en.Id == id);
+
+            var loggedinuser = await getcurrentuserasync();
+
+            if (encounter.ApplicationUserId != loggedinuser.Id)
+            {
+                return NotFound();
+            }
+
+            return View(encounter);
         }
 
         // POST: Encounter/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
+        public async Task<ActionResult> Delete(int id, Encounter encounter)
         {
             try
             {
-                // TODO: Add delete logic here
+
+                _context.Encounter.Remove(encounter);
+                await _context.SaveChangesAsync();
 
                 return RedirectToAction(nameof(Index));
             }

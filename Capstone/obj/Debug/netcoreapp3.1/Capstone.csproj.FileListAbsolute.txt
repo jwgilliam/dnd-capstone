@@ -440,3 +440,5 @@ C:\Users\ggsmo\workspace\csharp\Capstone\Capstone\obj\Debug\netcoreapp3.1\Capsto
 C:\Users\ggsmo\workspace\csharp\Capstone\Capstone\obj\Debug\netcoreapp3.1\Capstone.genruntimeconfig.cache
 C:\Users\ggsmo\workspace\csharp\Capstone\Capstone\obj\Debug\netcoreapp3.1\Capstone.csprojAssemblyReference.cache
 C:\Users\ggsmo\workspace\csharp\Capstone\Capstone\obj\Debug\netcoreapp3.1\Razor\Views\Encounter\Edit.cshtml.g.cs
+C:\Users\ggsmo\workspace\csharp\Capstone\Capstone\obj\Debug\netcoreapp3.1\Razor\Views\Encounter\Delete.cshtml.g.cs
+C:\Users\ggsmo\workspace\csharp\Capstone\Capstone\obj\Debug\netcoreapp3.1\Razor\Views\Encounter\Details.cshtml.g.cs
